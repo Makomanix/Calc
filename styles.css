@@ -1,0 +1,50 @@
+.calc {
+    min-height: 600px;
+    max-width: 400px;
+}
+
+.screen {
+    height: 5rem;
+    color: white;
+    background-color: black;
+    font-size: 4em;
+    text-align: end;
+}
+
+.calc-buttons {
+    
+}
+
+.calc-button-row {
+    display: flex;
+    flex-direction: row;
+    height: 6em;
+}
+
+.calc-button {
+    font-size: 2rem;
+    width: 25%; 
+    border-width: .25rem;   
+}
+
+button:hover{
+    filter: brightness(80%);
+}
+
+button:last-child {
+    background-color: orange;
+    color: white;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.calc-button-double {
+    flex-grow: 2;
+    font-size: 2rem;
+    border-width: .25rem;
+}
+
+.calc-button-triple {
+    flex-grow: 3;
+    font-size: 2rem;
+    border-width: .25rem;
+}
