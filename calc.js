@@ -26,7 +26,7 @@ function handleMaths(symbol) {
     if (symbol === "+") {
         console.log(typeof(intbuffer))
         console.log(typeof(memory));
-        intbuffer += 
+        intbuffer += buffer
     }
     rerender()
 
