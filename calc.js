@@ -22,20 +22,13 @@ function handleNumber(number) {
 
 function handleMaths(symbol) {
     flushOperator()
-    let intbuffer = parseInt(buffer)
+    let intBuffer = parseInt(buffer)
     if (symbol === "+") {
-        console.log(typeof(intbuffer))
-        console.log(typeof(memory));
-        intbuffer += buffer
+        intBuffer += buffer
     }
     rerender()
-
-    // console.log("mem", memory)
-    // console.log("buf", buffer)
     
-
 };
-
 
 function handleSymbol(symbol) {
     switch (symbol) {
@@ -61,12 +54,7 @@ function handleSymbol(symbol) {
         case "-":
         case "x":
         case "÷":
-            if (memory === '0') {
-            memory = buffer;
-            buffer = '0';
-        } else {
             handleMaths(symbol);
-        };
             break;
     }
     
