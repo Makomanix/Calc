@@ -21,11 +21,11 @@ function handleNumber(number) {
 };
 
 function handleMaths(symbol) {
-    flushOperator()
-    let intBuffer = parseInt(buffer)
-    if (symbol === "+") {
-        intBuffer += buffer
+    if (buffer === '0') {
+        return;
     }
+
+    const intBuffer = parseInt(buffer);
     rerender()
     
 };
