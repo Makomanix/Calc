@@ -1,6 +1,7 @@
 let buffer = '0';
-let memory = '0';
+let memory = 0;
 let lastOperator = ''
+let equal = false;
 
 function handleClick(value) {
     if (isNaN(value)) {
@@ -11,10 +12,13 @@ function handleClick(value) {
 };
 
 function handleNumber(number) {
-    if (buffer === '0') {
+    if (buffer === '0' || equal === true) {
         buffer = number;
+        equal = false;
+        console.log(equal)
     } else {
         buffer += number;
+        console.log(equal)
     };
 
     rerender();
@@ -22,12 +26,36 @@ function handleNumber(number) {
 
 function handleMaths(symbol) {
     if (buffer === '0') {
+        console.log('hi', buffer)
         return;
     }
 
     const intBuffer = parseInt(buffer);
-    rerender()
+    if (memory === 0) {
+        memory = intBuffer;
+        console.log(memory)
+    } else {
+        flushOperator(intBuffer);
+    };
     
+    rerender();
+    lastOperator = symbol;
+    buffer = '0';
+    console.log(lastOperator)
+    console.log(buffer)
+    console.log(memory)
+};
+
+function flushOperator(intBuffer) {
+    if (lastOperator === "+") {
+        memory += intBuffer;
+    } else if (lastOperator === "-") {
+        memory -= intBuffer;
+    } else if (lastOperator === "x") {
+        memory *= intBuffer
+    } else if (lastOperator === "÷") {
+        memory /= intBuffer;
+    }
 };
 
 function handleSymbol(symbol) {
@@ -48,6 +76,17 @@ function handleSymbol(symbol) {
             break;
 
         case "=":
+            if (lastOperator === null) {
+                console.log(lastOperator)
+                return;
+            } 
+
+            flushOperator(parseInt(buffer));
+            console.log(lastOperator)
+            equal = true
+            buffer = "" + memory;
+            memory = 0;
+            rerender();
             break;
 
         case "+":
@@ -55,9 +94,9 @@ function handleSymbol(symbol) {
         case "x":
         case "÷":
             handleMaths(symbol);
+            equal = false;
             break;
     }
-    
 };
 
 function init() {
@@ -74,12 +113,5 @@ function rerender() {
     .innerText = buffer
 };
 
-function flushOperator() {
-    if (lastOperator === null) {
-        return;
-    } else {
-
-    }
-}
 
 init();
