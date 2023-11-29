@@ -14,11 +14,11 @@ function handleClick(value) {
 function handleNumber(number) {
     if (buffer === '0' || equal === true) {
         buffer = number;
+        console.log("in number", equal)
         equal = false;
-        console.log(equal)
     } else {
         buffer += number;
-        console.log(equal)
+        console.log("in number", equal)
     };
 
     rerender();
@@ -30,7 +30,7 @@ function handleMaths(symbol) {
         return;
     }
 
-    const intBuffer = parseInt(buffer);
+    let intBuffer = parseInt(buffer);
     if (memory === 0) {
         memory = intBuffer;
         console.log(memory)
