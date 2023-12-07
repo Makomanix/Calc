@@ -61,8 +61,10 @@ function flushOperator(intBuffer) {
 function handleSymbol(symbol) {
     switch (symbol) {
         case "C":
-            buffer = "0"
-            memory = "0"
+            buffer = "0";
+            memory = 0;
+            lastOperator = '';
+            equal = false;
             rerender();
             break;
 
@@ -72,6 +74,7 @@ function handleSymbol(symbol) {
             } else {
                 buffer = buffer.substring(0, buffer.length - 1);
             };
+            equal = false;
             rerender();
             break;
 
@@ -79,13 +82,19 @@ function handleSymbol(symbol) {
             if (lastOperator === null) {
                 console.log(lastOperator)
                 return;
-            } 
+            };
+            
+            if (equal) {
+                handleMaths(lastOperator);
+            } else {
 
-            flushOperator(parseInt(buffer));
-            console.log(lastOperator)
-            equal = true
-            buffer = "" + memory;
-            memory = 0;
+                flushOperator(parseInt(buffer));
+                console.log(lastOperator)
+                equal = true
+                buffer = "" + memory;
+                memory = 0;
+            };
+
             rerender();
             break;
 
