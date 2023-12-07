@@ -14,11 +14,9 @@ function handleClick(value) {
 function handleNumber(number) {
     if (buffer === '0' || equal === true) {
         buffer = number;
-        console.log("in number", equal)
         equal = false;
     } else {
-        buffer += number;
-        console.log("in number", equal)
+        buffer += number;        
     };
 
     rerender();
@@ -26,14 +24,12 @@ function handleNumber(number) {
 
 function handleMaths(symbol) {
     if (buffer === '0') {
-        console.log('hi', buffer)
         return;
-    }
+    };
 
     let intBuffer = parseInt(buffer);
     if (memory === 0) {
         memory = intBuffer;
-        console.log(memory)
     } else {
         flushOperator(intBuffer);
     };
@@ -41,9 +37,6 @@ function handleMaths(symbol) {
     rerender();
     lastOperator = symbol;
     buffer = '0';
-    console.log(lastOperator)
-    console.log(buffer)
-    console.log(memory)
 };
 
 function flushOperator(intBuffer) {
@@ -80,7 +73,7 @@ function handleSymbol(symbol) {
 
         case "=":
             if (lastOperator === null) {
-                console.log(lastOperator)
+
                 return;
             };
             
@@ -89,7 +82,6 @@ function handleSymbol(symbol) {
             } else {
 
                 flushOperator(parseInt(buffer));
-                console.log(lastOperator)
                 equal = true
                 buffer = "" + memory;
                 memory = 0;
